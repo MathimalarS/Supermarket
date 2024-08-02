@@ -1,0 +1,132 @@
+.fruits-veg-page {
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #38a34a;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.home-link:hover {
+    color: #2d8a3e;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2em;
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(12, 11, 11, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-name {
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product-price {
+    font-size: 1.1em;
+    color: #666;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product-description {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-controls button {
+    background-color: #38a34a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: #2d8a3e;
+}
+
+.quantity-controls input {
+    width: 50px;
+    text-align: center;
+    font-size: 1em;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.add-to-cart-button {
+    background-color: #2d8a3e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #00e636;
+}

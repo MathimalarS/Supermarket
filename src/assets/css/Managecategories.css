@@ -1,0 +1,39 @@
+.manage-categories {
+    padding: 20px;
+  }
+  
+  .manage-categories h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .manage-categories ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .manage-categories li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .manage-categories button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .manage-categories button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Add additional styles for form, etc. */
+  

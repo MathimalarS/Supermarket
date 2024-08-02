@@ -1,0 +1,210 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+  .aboutus-container {
+    font-family: 'Poppins', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    animation: slideIn 1s ease-out;
+  }
+  .values
+  {
+    margin-left: 50px;
+  }
+  
+  .header {
+    font-size: 2.5em;
+    color: #5a8974;
+    margin-bottom: 10px;
+    animation: fadeIn 2s;
+  }
+  
+  .sub-header {
+    font-size: 1.5em;
+    color: #1e4231;
+    margin-bottom: 30px;
+    animation: fadeIn 2s 1s;
+  }
+  
+  .aboutus-content {
+    margin-top: 30px;
+  }
+  
+  .aboutus-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.666);
+    transition: transform 0.7s, box-shadow 0.3s;
+  }
+  
+  .aboutus-section.left .text-container {
+    order: 2;
+  }
+  
+  .aboutus-section.left .image-container-left {
+    order: 1;
+    margin-right: 20px;
+  }
+  
+  .aboutus-section.right .text-container {
+    order: 1;
+  }
+  
+  .aboutus-section.right .image-container-right {
+    order: 2;
+    margin-left: 20px;
+  }
+  
+  .image-container-left, .image-container-right {
+    flex: 0 0 auto;
+    padding: 20px;
+  }
+  
+  .image-container-left img, .image-container-right img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .image-container-left img:hover, .image-container-right img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .text-container {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .text-container h3 {
+    color: #2d6a4f;
+    margin: 20px 0 10px 0;
+  }
+  .text-container .values
+  {
+    text-align: left;
+  }
+  .text-container p {
+    color: #555;
+    text-align: center;
+    line-height: 1.5;
+    /* font-size: ; */
+  }
+  
+  /* Keyframes for animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInScroll {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide-in animations from left and right */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .aboutus-section.left {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+  
+  .aboutus-section.right {
+    animation: slideInRight 1s ease-out forwards;
+  }
+  
+  .aboutus-section:nth-child(odd) {
+    animation-delay: 0.2s;
+  }
+  
+  .aboutus-section:nth-child(even) {
+    animation-delay: 0.4s;
+  }
+  /* Image styles */
+  .image-container-left img, .image-container-right img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 1s, opacity 1s ease-in-out;
+    opacity: 0;
+  }
+  
+  .image-container-left img {
+    transform: translateX(-100px); /* Start position for sliding from left */
+  }
+  
+  .image-container-right img {
+    transform: translateX(100px); /* Start position for sliding from right */
+  }
+  
+  .image-container-left img.visible {
+    opacity: 1;
+    transform: translateX(0); /* End position for sliding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-container-right img.visible {
+    opacity: 1;
+    transform: translateX(0); /* End position for sliding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hover effect */
+  .image-container-left img:hover, .image-container-right img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  

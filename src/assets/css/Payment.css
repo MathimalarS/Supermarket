@@ -1,0 +1,83 @@
+.payment-page {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.payment-header {
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 80px;
+}
+
+.payment-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.card-logos {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.card-logos img {
+  width: 40px;
+}
+
+.payment-details {
+  text-align: left;
+  margin-top: 50px; /* Add margin-top to avoid overlap with card logos */
+}
+
+.payment-details form {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-details label {
+  margin-top: 10px;
+}
+
+.payment-details input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.payment-details button {
+  padding: 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-details button:hover {
+  background-color: #218838;
+}
+
+.payment-footer {
+  margin-top: 20px;
+}
+
+.payment-footer a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.payment-footer a:hover {
+  text-decoration: underline;
+}

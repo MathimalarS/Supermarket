@@ -1,0 +1,86 @@
+/* Footer.css */
+.footer {
+  background-color: #ecebeb; /* Light gray background */
+  box-shadow: #333;
+  color: #333; /* Dark text color */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+.footer-section h4 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  display: block;
+  color: #333;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.newsletter-input {
+  width: calc(100% - 110px); /* Adjust to fit within the section */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.newsletter-button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.newsletter-button:hover {
+  background-color: #45a049;
+}
+
+.footer-map-section iframe {
+  width: 100%;
+  height: 150px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #000;
+}
