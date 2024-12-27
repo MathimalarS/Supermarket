@@ -1,0 +1,54 @@
+.payment-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  font-size: 2em;
+  color: #10dc35;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.success-message {
+  text-align: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add margin to create space for the link */
+}
+
+.success-image {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.success-message h1 {
+  color: #10dc35;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #10dc35;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.home-link:hover {
+  background-color: #0eb02a;
+}

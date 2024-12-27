@@ -1,30 +1,71 @@
-import React, { useState } from 'react';
-import '../assets/css/Manageaddress.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../assets/css/Manageaddress.css'; // Make sure your CSS file is correctly imported
+import { Link } from 'react-router-dom';
 
-const Manageaddress = () => {
-  const [addresses, setAddresses] = useState([
-    { id: 1, address: '123 Main St, City, Country' },
-    { id: 2, address: '456 Elm St, City, Country' },
-  ]);
+const ManageAddress = () => {
+  const [addresses, setAddresses] = useState([]);
 
-  const handleDelete = (id) => {
-    setAddresses(addresses.filter(address => address.id !== id));
+  useEffect(() => {
+    const fetchAddresses = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/orders');
+        setAddresses(response.data);
+      } catch (error) {
+        console.error('Error fetching addresses', error);
+      }
+    };
+
+    fetchAddresses();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:8080/orders/${id}`);
+      if (response.status === 204) {
+        setAddresses(prevAddresses => prevAddresses.filter(address => address.id !== id));
+      } else {
+        console.error('Unexpected response status:', response.status);
+        alert('Failed to delete address. Unexpected response status.');
+      }
+    } catch (error) {
+      console.error('Error deleting address:', error.response ? error.response.data : error.message);
+      alert('Failed to delete address. Please try again.');
+    }
   };
 
   return (
     <div className="manage-address">
-      <h1>Manage Address</h1>
-      <ul>
-        {addresses.map(address => (
-          <li key={address.id}>
-            {address.address}
-            <button onClick={() => handleDelete(address.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      {/* Add form to add new addresses */}
+      <Link to="/admin" className="bl">Back</Link>
+      <h1>Manage Orders</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {addresses.map(address => (
+            <tr key={address.id}>
+              <td>{address.id}</td>
+              <td>{address.name}</td>
+              <td>{address.email}</td>
+              <td>{address.address}</td>
+              <td>{address.mobile}</td>
+              <td>
+                <button onClick={() => handleDelete(address.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default Manageaddress;
+export default ManageAddress;

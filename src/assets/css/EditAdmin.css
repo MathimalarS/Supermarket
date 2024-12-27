@@ -1,0 +1,48 @@
+/* AdminProfileEdit.css */
+.admin-profile-edit {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .admin-profile-edit h1 {
+    margin-bottom: 20px;
+  }
+  
+  .admin-profile-edit form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-profile-edit .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .admin-profile-edit label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .admin-profile-edit input[type="email"],
+  .admin-profile-edit input[type="password"],
+  .admin-profile-edit input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .admin-profile-edit button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-profile-edit button:hover {
+    background-color: #0056b3;
+  }
+  

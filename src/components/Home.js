@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Offer from './Offer';
-import '../assets/css/Home.css';
 import Footer from './Footer';
 import PromotionalBanner from './PromotionalBanner';
 import Category from './Category';
-import Admin from './Admin';
+import '../assets/css/Home.css';
+import landingImage from '../assets/img/home.jpg'; // Make sure the image path is correct
 
 function Home() {
     const [showLogin, setShowLogin] = useState(false);
@@ -38,21 +38,26 @@ function Home() {
     const updateCartItem = (updatedCart) => {
         setCart(updatedCart);
     };
-    
 
     return (
         <div>
-            {/* <Navbar cart={cart} setCart={setCart} /> */}
             <div className="home-container">
                 <div className="landing-page">
-                    <img src={require('../assets/img/home.jpg')} alt="Landing" className="landing-image" />
+                    <img src={landingImage} alt="Landing" className="landing-image" />
+                    <div className="landing-content">
+                        <h1>India's Leading Food & Grocery <span className="highlight">Eco Mart</span></h1>
+                        <p>Discover seamless shopping with our app, offering everything from fresh produce to daily essentials. Shop across our Supermarkets, Hypermarkets, and e-grocery platforms with ease. We're committed to ensuring uninterrupted access to the groceries you need</p>
+                        <p><i>Think grocery, Think Eco Mart.</i></p>
+                        <a href="/products" className="explore-link">Explore</a>
+                    </div>
                 </div>
                 <PromotionalBanner />
+                <br></br><br></br>
                 <Offer />
+                <br></br><br></br>
                 <Category />
-                
             </div>
-                <Footer />
+            <Footer />
         </div>
     );
 }

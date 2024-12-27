@@ -7,81 +7,40 @@ import Login from './Login';
 import Signup from './Signup';
 import CitySearchPopup from './CitySearchPopup';
 import Cart from './Cart';
-import UserPopup from './UserPopup'; // Import the UserPopup component
+import UserPopup from './UserPopup';
 
-const Navbar = ({ cart, setCart, isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ cart, setCart }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
   const [showCitySearchPopup, setShowCitySearchPopup] = useState(false);
   const [showCartPopup, setShowCartPopup] = useState(false);
-  const [showUserPopup, setShowUserPopup] = useState(false); // State for user popup
-  const [searchPlaceholder, setSearchPlaceholder] = useState("Search \"chips\"");
+  const [showUserPopup, setShowUserPopup] = useState(false);
+  const [searchPlaceholder, setSearchPlaceholder] = useState("chips");
   const [transitionClass, setTransitionClass] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    setShowLoginPopup(true);
-    setShowSignupPopup(false);
-  };
-
-  const handleSignupClick = () => {
-    setShowSignupPopup(true);
-    setShowLoginPopup(false);
-  };
-
-  const closeLoginPopup = () => {
-    setShowLoginPopup(false);
-  };
-
-  const closeSignupPopup = () => {
-    setShowSignupPopup(false);
-  };
-
-  const handleLoginSuccess = () => {
-    setShowLoginPopup(false);
-    setIsLoggedIn(true);
-    navigate('/');
-  };
-
-  const handleCartClick = () => {
-    setShowCartPopup(true);
-  };
-
-  const closeCartPopup = () => {
-    setShowCartPopup(false);
-  };
-
-  const getTotalItems = () => {
-    if (!Array.isArray(cart)) {
-      return 0;
+  useEffect(() => {
+    // Check localStorage for login state
+    const loggedInState = localStorage.getItem("isLoggedIn");
+    if (loggedInState) {
+      setIsLoggedIn(loggedInState === "true");
     }
-    return cart.reduce((total, item) => total + item.quantity, 0);
+  }, []);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
-  const handleCitySearchClick = () => {
-    setShowCitySearchPopup(true);
-  };
-
-  const closeCitySearchPopup = () => {
-    setShowCitySearchPopup(false);
-  };
-
-  const handleUserIconClick = () => {
-    setShowUserPopup(!showUserPopup);
-  };
-
-  const closeUserPopup = () => {
-    setShowUserPopup(false);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    navigate('/');
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/products?search=${searchTerm}`);
   };
 
   useEffect(() => {
-    const placeholders = ["Search \"chips\"", "Search \"fruits\"", "Search \"vegetables\"", "Search \"milk\""];
+    const placeholders = ["chips", "fruits", "vegetables", "milk"];
     let index = 0;
     const interval = setInterval(() => {
       setTransitionClass('fade-out');
@@ -93,6 +52,19 @@ const Navbar = ({ cart, setCart, isLoggedIn, setIsLoggedIn }) => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleLoginSuccess = (isUserLoggedIn) => {
+    setIsLoggedIn(isUserLoggedIn); // Set the logged-in state
+    setShowLoginPopup(false); // Close the login popup
+  };
+
+  const handleLogout = () => {
+    // Clear localStorage and set isLoggedIn to false
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setIsLoggedIn(false); // Update the state to reflect logout
+  };
 
   return (
     <>
@@ -108,48 +80,46 @@ const Navbar = ({ cart, setCart, isLoggedIn, setIsLoggedIn }) => {
           </div>
         </div>
         <div className="navbar-center">
-          <div className="delivery-text" onClick={handleCitySearchClick}>
+          <div className="delivery-text" onClick={() => setShowCitySearchPopup(true)}>
             Your Location <span className="down-arrow">▼</span>
           </div>
         </div>
         <div className="search-bar">
-          <input type="text" placeholder="" />
-          <span className={`search-placeholder ${transitionClass}`}>
-            {searchPlaceholder}
-          </span>
+          <form onSubmit={handleSearchSubmit}>
+            <input 
+              type="text" 
+              value={searchTerm} 
+              onChange={handleSearchChange} 
+            />
+            <div className={`placeholder-container ${transitionClass}`}>
+              {`Search "${searchPlaceholder}"`}
+            </div>
+          </form>
         </div>
         <div className="navbar-right">
           {isLoggedIn ? (
-            <div className="user-icon" onClick={handleUserIconClick}>
+            <div className="user-icon" onClick={() => setShowUserPopup(!showUserPopup)}>
               <i className="fas fa-user"></i>
             </div>
           ) : (
-            <button className="login-button" onClick={handleLoginClick}>Login</button>
+            <button className="login-button" onClick={() => setShowLoginPopup(true)}>Login</button>
           )}
-          <div className="cart-icon" onClick={handleCartClick}>
+          <div className="cart-icon" onClick={() => setShowCartPopup(true)}>
             <i className="fas fa-shopping-cart"></i>
-            {getTotalItems() > 0 && <span className="cart-count">{getTotalItems()}</span>}
+            {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
           </div>
         </div>
       </nav>
-      {showLoginPopup && (
-        <Login
-          onClose={closeLoginPopup}
-          onSignupClick={handleSignupClick}
-          onLoginSuccess={handleLoginSuccess}
-        />
-      )}
-      {showSignupPopup && <Signup onClose={closeSignupPopup} />}
-      {showCitySearchPopup && <CitySearchPopup onClose={closeCitySearchPopup} />}
+      {showLoginPopup && <Login onClose={() => setShowLoginPopup(false)} onSignupClick={() => setShowSignupPopup(true)} onLoginSuccess={handleLoginSuccess} />}
+      {showSignupPopup && <Signup onClose={() => setShowSignupPopup(false)} />}
+      {showCitySearchPopup && <CitySearchPopup onClose={() => setShowCitySearchPopup(false)} />}
       {showCartPopup && (
         <div className="cart-popup">
-          <button className="close-button" onClick={closeCartPopup}>×</button>
-          <Cart cart={cart} setCart={setCart} isLoggedIn={isLoggedIn} />
+          <button className="cart-close-button" onClick={() => setShowCartPopup(false)}>×</button>
+          <Cart cart={cart} setCart={setCart} isLoggedIn={isLoggedIn} closeCart={() => setShowCartPopup(false)} />
         </div>
       )}
-      {showUserPopup && (
-        <UserPopup onClose={closeUserPopup} onLogout={handleLogout} />
-      )}
+      {showUserPopup && <UserPopup onClose={() => setShowUserPopup(false)} onLogout={handleLogout} />}
     </>
   );
 };

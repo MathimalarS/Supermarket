@@ -12,35 +12,40 @@
 }
 
 .signup-popup {
-    background: rgba(255, 255, 255, 0.4); 
+    background: rgba(255, 255, 255, 0.543); /* Adjusted opacity for better readability */
     padding: 20px;
     border-radius: 10px;
     width: 300px;
     max-width: 90%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .signup-popup h1 {
-    color: #ffffff;
+    color: #ffffff; /* White color for heading */
     margin: 0 0 20px;
     font-size: 24px;
     text-align: center;
 }
 
 .signup-popup label {
-    color: #ffffff;
+    color: #ffffff; /* White color for label text */
     display: block;
     margin: 10px 0 5px;
     font-weight: bold;
 }
 
 .signup-popup input {
-    width: calc(100% - 20px);
-    padding: 10px;
+    width: 100%; /* Full width input */
+    padding: 10px; /* Increased padding for better spacing */
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background: #ffffff; /* Dark background for contrast */
+    color: #000000; /* White text color */
+    box-sizing: border-box; /* Ensures padding and border are included in width */
 }
 
 .signup-popup .submit-button {
@@ -52,6 +57,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px; /* Ensures spacing between the button and inputs */
 }
 
 .signup-popup .submit-button:hover {
@@ -61,11 +67,11 @@
 .login-message {
     text-align: center;
     margin-top: 10px;
-    color: #ffffff;
+    color: #ffffff; /* White color for login message */
 }
 
 .login-link {
-    color: #ffffff;
+    color: #ffffff; /* White color for login link */
     text-decoration: none;
     font-weight: bold;
 }
@@ -75,7 +81,7 @@
     font-size: 14px;
 }
 
-.close-button {
+.signup .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -83,5 +89,5 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #000;
+    color: #000000; /* White color for close button */
 }

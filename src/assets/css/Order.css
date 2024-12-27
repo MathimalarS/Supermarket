@@ -1,0 +1,131 @@
+.order-page {
+  position: relative;
+  padding: 40px 20px;
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../img/order.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.4; /* Dim the background image */
+  z-index: -1;
+}
+
+.payment-page {
+  position: relative;
+  width: 90%; /* Adjusted width to make the container smaller */
+  max-width: 400px; /* Reduced max-width to constrain the container further */
+  margin: 0 auto;
+  padding: 15px; /* Reduced padding for a more compact look */
+  border-radius: 8px; /* Slightly smaller border radius */
+  background-color: #ffffff; /* White background for the form */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-top: 20px;
+}
+
+.payment-page .form-group {
+  margin-bottom: 15px; /* Reduced margin */
+}
+
+.payment-page .form-group label {
+  font-weight: 600;
+  margin-bottom: 4px; /* Reduced margin */
+  display: block;
+  color: #495057;
+}
+
+.payment-page input[type="text"], 
+.payment-page input[type="email"] {
+  width: 100%;
+  padding: 10px; /* Increased padding inside the input fields */
+  border: 1px solid #ced4da;
+  border-radius: 4px; /* Slightly smaller border radius */
+  font-size: 14px; /* Smaller font size */
+  color: #495057;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  transition: border-color 0.3s;
+}
+
+.payment-page input[type="text"]:focus, 
+.payment-page input[type="email"]:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow on focus */
+}
+
+.payment-page .address-input {
+  display: flex;
+  gap: 10px; /* Adjusted spacing between address input fields */
+}
+
+.payment-page .address-input input {
+  flex: 1;
+  padding: 10px; /* Increased padding inside address inputs */
+  border: 1px solid #ced4da;
+  border-radius: 4px; /* Smaller border radius */
+  font-size: 14px; /* Smaller font size */
+  color: #495057;
+  margin-bottom: 10px; /* Reduced space below each address input */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.payment-page .payment-methods {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px; /* Reduced margin */
+}
+
+.payment-page .payment-methods div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.payment-page .payment-methods input[type="radio"] {
+  margin-right: 8px; /* Reduced margin for radio buttons */
+  cursor: pointer;
+}
+
+.payment-page .order-summary {
+  text-align: center;
+  margin-top: 15px; /* Reduced margin */
+  background-color: #f1f3f5;
+  padding: 10px; /* Reduced padding */
+  border-radius: 4px; /* Smaller border radius */
+  font-size: 16px; /* Smaller font size */
+  font-weight: 600;
+  color: #343a40;
+}
+
+.payment-page .submit-btn {
+  padding: 10px; /* Reduced padding */
+  border: none;
+  border-radius: 4px; /* Smaller border radius */
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px; /* Smaller font size */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.payment-page .submit-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.02); /* Slight scale-up on hover */
+}
+
+.payment-page .submit-btn:active {
+  background-color: #004085;
+  transform: scale(0.98); /* Slight scale-down on active */
+}

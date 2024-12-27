@@ -1,4 +1,10 @@
 /* Feedback.css */
+.bo 
+{
+    background-image: url('../img/feed.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .feedback-container {
     max-width: 600px;
     margin: 0 auto;

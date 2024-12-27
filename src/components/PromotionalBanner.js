@@ -43,7 +43,7 @@ const PromotionalBanner = () => {
       <div className="banner-item-landscape">
         <div className="banner-image">
           <img src={chocolate} alt="chocolate" />
-          <div className="banner-content">
+          <div className="banner-content-landscape">
             <h3 className='choco'>Craving for Chocolates?</h3>
             <p className='chocol'>Get delicious chocolates delivered in minutes</p>
             <button className="order-now-button">Order Now</button>

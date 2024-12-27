@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'; // Make sure axios is imported if you're using it
 import '../assets/css/Login.css';
 
 const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
@@ -9,7 +8,7 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
         email: "",
         password: "",
     });
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -17,43 +16,84 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const { email, password } = formData;
-
-        const adminEmail = "admin@example.com";
-        const adminPassword = "Admin123";
-
-        if (email === "727822tucs111@skct.edu.in" && password === "Malarsav04") {
-            onLoginSuccess(false);
-            toast.success('Logged in successfully!');
-            navigate('/');
-        } else if (email === adminEmail && password === adminPassword) {
-            onLoginSuccess(true);
-            toast.success('Logged in successfully!');
-            navigate('/admin');
-        } else if (validatePassword(password)) {
-            onLoginSuccess(false);
-            toast.success('Logged in successfully!');
-            navigate('/');
-        } else {
-            setError("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.");
+    const validate = () => {
+        let emailError = "";
+        let passwordError = "";
+        if (!formData.email.includes("@")) emailError = "Invalid email address";
+        if (formData.password.length < 6) passwordError = "Password must be at least 6 characters";
+        if (emailError || passwordError) {
+            setErrors({ email: emailError, password: passwordError });
+            return false;
         }
-    };
-
-    const validatePassword = (password) => {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        return regex.test(password);
+        return true;
     };
 
     const handleForgotPassword = () => {
         alert('An email has been sent to your registered email ID.');
     };
 
+    const handleSignupClick = () => {
+        onSignupClick();
+        onClose();
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const isValid = validate();
+        if (isValid) {
+            try {
+                const response = await axios.post(
+                    "http://localhost:8080/api/auth/authenticate",
+                    {
+                        email: formData.email,
+                        password: formData.password,
+                    }
+                );
+    
+                // Assuming your backend returns a userId and a token
+                const { userId, token, role } = response.data;
+    
+                localStorage.setItem("token", token);
+                localStorage.setItem("role", role);
+    
+                // Store the login state in localStorage
+                localStorage.setItem("isLoggedIn", role !== "ROLE_ADMIN");
+    
+                onLoginSuccess(role !== "ROLE_ADMIN");
+    
+                // Store UserAuth data after successful login
+                await axios.post("http://localhost:8080/api/userauth/login", {
+                    email: formData.email,
+                    userId: userId, // Assuming response contains userId
+                });
+    
+                if (role === "ROLE_ADMIN") {
+                    navigate("/admin");
+                } else {
+                    alert("Login successful");
+                    navigate('/');
+                    window.location.reload();
+                }
+    
+            } catch (error) {
+                console.error('Login failed:', error);
+                if (error.response) {
+                    console.error('Error Response:', error.response.data);
+                    if (error.response.status === 403) {
+                        setErrors({ email: "Access forbidden: Incorrect credentials or insufficient permissions." });
+                    } else {
+                        setErrors({ email: "Login failed. Please check your credentials and try again." });
+                    }
+                } else {
+                    setErrors({ email: "An unexpected error occurred. Please try again later." });
+                }
+            }
+        }
+    };
     return (
         <div className="login-container" onClick={onClose}>
             <div className="login-popup" onClick={(e) => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}>×</button>
+                <button className="custom-close-button" onClick={onClose}>×</button>
                 <h1>Login</h1>
                 <div className="detail">
                     <form onSubmit={handleSubmit}>
@@ -75,21 +115,20 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
                             onChange={handleChange}
                             required
                         />
-                        {error && <div className="error-message">{error}</div>}
+                        {errors.email && <div className="error-message">{errors.email}</div>}
+                        {errors.password && <div className="error-message">{errors.password}</div>}
                         <p className='divq'>
                             <div className='fp' onClick={handleForgotPassword}>
                                 Forgot Password?
                             </div>
                         </p>
-                        {error && <p className="error-message">{error}</p>}
                         <button type="submit" className="submit-button">Login</button>
                         <p className="signup-message">
-                            Don't have an account? <span onClick={onSignupClick} className="signup-link">Sign up</span>
+                            Don't have an account? <span onClick={handleSignupClick} className="signup-link">Sign up</span>
                         </p>
                     </form>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 };

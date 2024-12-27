@@ -1,39 +1,65 @@
+/* src/assets/css/Manageaddress.css */
+
 .manage-address {
-    padding: 20px;
-  }
-  
-  .manage-address h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .manage-address ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .manage-address li {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .manage-address button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #f44336;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .manage-address button:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Add additional styles for form, etc. */
-  
+  padding: 20px;
+  position: relative;
+}
+
+.manage-address .bl {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #3498db; /* Blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.manage-address .bl:hover {
+  background-color: #2980b9; /* Darker blue color */
+}
+
+.manage-address h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.manage-address table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-address table th,
+.manage-address table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.manage-address table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.manage-address table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.manage-address table tr:hover {
+  background-color: #ddd;
+}
+
+.manage-address button {
+  background-color: #e74c3c; /* Red color */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.manage-address button:hover {
+  background-color: #c0392b; /* Darker red */
+}

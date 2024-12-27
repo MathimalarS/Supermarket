@@ -11,7 +11,7 @@ const UserPopup = ({ onClose, onLogout }) => {
     <div className="user-popup">
       <button className="close-button" onClick={onClose}>×</button>
       <ul>
-        <li><Link to="/payment" onClick={handleLinkClick}>My Account</Link></li>
+        <li><Link to="/userdash" onClick={handleLinkClick}>My Account</Link></li>
         <li><Link to="/signup" onClick={handleLinkClick}>Add Account</Link></li>
         <li onClick={() => { onLogout(); onClose(); }}>Logout</li>
       </ul>

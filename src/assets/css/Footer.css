@@ -1,18 +1,17 @@
-/* Footer.css */
 .footer {
   background-color: #ecebeb; /* Light gray background */
-  box-shadow: #333;
   color: #333; /* Dark text color */
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px; /* Increased gap between footer sections */
 }
 
 .footer-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 30px; /* Equal gap between each section in the footer-top */
 }
 
 .footer-section {
@@ -21,18 +20,18 @@
 }
 
 .footer-section h4 {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin for better spacing */
   font-size: 1.2em;
 }
 
 .footer-section p {
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Increased margin for better spacing */
 }
 
 .footer-section a {
   display: block;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Increased margin for better spacing */
   text-decoration: none;
 }
 
@@ -41,10 +40,11 @@
 }
 
 .newsletter-input {
-  width: calc(100% - 110px); /* Adjust to fit within the section */
+  width: calc(100% - 110px); /* Adjusted to fit within the section */
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-bottom: 10px; /* Added margin to separate input from button */
 }
 
 .newsletter-button {
@@ -56,28 +56,35 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
 }
 
 .newsletter-button:hover {
   background-color: #45a049;
 }
 
+.footer-map-section {
+  margin-top: 20px; /* Added margin to separate map from other content */
+}
+
 .footer-map-section iframe {
   width: 100%;
   height: 150px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .footer-bottom {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+  margin-top: 20px; /* Added margin to separate bottom section from top */
 }
 
 .social-links a {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 15px; /* Increased margin for more space between icons */
   color: #333;
+  font-size: xx-large;
   text-decoration: none;
 }
 

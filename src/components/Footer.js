@@ -14,7 +14,7 @@ function Footer() {
         </div>
         <div className="footer-section">
           <h4>Quick Links</h4>
-          <Link to="/product">Products</Link>
+          <Link to="/products">Products</Link>
           <a href="/offer">Offers</a>
           <a href="/stores">Store Locator</a>
         </div>
