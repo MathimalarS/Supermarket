@@ -70,7 +70,7 @@ const ManageVendors = () => {
               <td>{vendor.email}</td>
               <td>{vendor.active}</td>
               <td>
-                <button onClick={() => handleDelete(vendor.id)}>Delete</button>
+                <button onClick={() => handleDelete(vendor.id) }className="vendor-button">Delete</button>
               </td>
             </tr>
           ))}

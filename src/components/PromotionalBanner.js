@@ -9,7 +9,7 @@ const PromotionalBanner = () => {
   return (
     <div className="promotional-banner-container">
       <div className="banner-row">
-        <div className="banner-item">
+        <div className="pharmacy-banner">
           <div className="banner-image">
             <img src={pharmacyImg} alt="Pharmacy" />
             <div className="banner-content">
@@ -19,7 +19,7 @@ const PromotionalBanner = () => {
             </div>
           </div>
         </div>
-        <div className="banner-item">
+        <div className="petcare-banner">
           <div className="banner-image">
             <img src={petCareImg} alt="Pet Care" />
             <div className="banner-content">
@@ -29,7 +29,7 @@ const PromotionalBanner = () => {
             </div>
           </div>
         </div>
-        <div className="banner-item">
+        <div className="babycare-banner">
           <div className="banner-image">
             <img src={babyCareImg} alt="Baby Care" />
             <div className="banner-content">
@@ -40,12 +40,12 @@ const PromotionalBanner = () => {
           </div>
         </div>
       </div>
-      <div className="banner-item-landscape">
+      <div className="chocolate-banner">
         <div className="banner-image">
-          <img src={chocolate} alt="chocolate" />
+          <img src={chocolate} alt="Chocolate" />
           <div className="banner-content-landscape">
-            <h3 className='choco'>Craving for Chocolates?</h3>
-            <p className='chocol'>Get delicious chocolates delivered in minutes</p>
+            <h3 className="choco">Craving for Chocolates?</h3>
+            <p className="chocol">Get delicious chocolates delivered in minutes</p>
             <button className="order-now-button">Order Now</button>
           </div>
         </div>

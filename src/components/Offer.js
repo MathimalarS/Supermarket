@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/css/Offer.css';
-import offer1 from '../assets/img/offer1.jpg';
+import offer1 from '../assets/img/offer1.avif';
 import offer2 from '../assets/img/offer2.jpg';
 import offer3 from '../assets/img/offer3.jpg';
+import offer4 from '../assets/img/offer4.jpg';
 
-const images = [offer1, offer2, offer3];
+const images = [offer1, offer2, offer3,offer4];
 
 const Offer = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

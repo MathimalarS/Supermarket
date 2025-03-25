@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Make sure axios is imported if you're using it
-import '../assets/css/Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../assets/css/Login.css";
 
-const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
+const Login = ({ onClose, onSignupClick, onLoginSuccess = () => {} }) => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -29,12 +29,16 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
     };
 
     const handleForgotPassword = () => {
-        alert('An email has been sent to your registered email ID.');
+        alert("An email has been sent to your registered email ID.");
     };
 
     const handleSignupClick = () => {
-        onSignupClick();
-        onClose();
+        if (onSignupClick) {
+            onSignupClick();
+        }
+        if (onClose) {
+            onClose();
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -42,54 +46,50 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
         const isValid = validate();
         if (isValid) {
             try {
-                const response = await axios.post(
-                    "http://localhost:8080/api/auth/authenticate",
-                    {
-                        email: formData.email,
-                        password: formData.password,
-                    }
-                );
-    
-                // Assuming your backend returns a userId and a token
+                const response = await axios.post("http://localhost:8080/api/auth/authenticate", {
+                    email: formData.email,
+                    password: formData.password,
+                });
+
                 const { userId, token, role } = response.data;
-    
+
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
-    
-                // Store the login state in localStorage
                 localStorage.setItem("isLoggedIn", role !== "ROLE_ADMIN");
-    
-                onLoginSuccess(role !== "ROLE_ADMIN");
-    
-                // Store UserAuth data after successful login
+
+                // Call onLoginSuccess only if it exists
+                if (onLoginSuccess) {
+                    onLoginSuccess(role !== "ROLE_ADMIN");
+                }
+
                 await axios.post("http://localhost:8080/api/userauth/login", {
                     email: formData.email,
                     userId: userId, // Assuming response contains userId
                 });
-    
-                if (role === "ROLE_ADMIN") {
+
+                if (role === "ADMIN") {
                     navigate("/admin");
                 } else {
                     alert("Login successful");
-                    navigate('/');
+                    navigate("/");
                     window.location.reload();
                 }
-    
             } catch (error) {
-                console.error('Login failed:', error);
+                console.error("Login failed:", error);
                 if (error.response) {
-                    console.error('Error Response:', error.response.data);
-                    if (error.response.status === 403) {
-                        setErrors({ email: "Access forbidden: Incorrect credentials or insufficient permissions." });
-                    } else {
-                        setErrors({ email: "Login failed. Please check your credentials and try again." });
-                    }
+                    console.error("Error Response:", error.response.data);
+                    setErrors({
+                        email: error.response.status === 403 
+                            ? "Access forbidden: Incorrect credentials or insufficient permissions."
+                            : "Login failed. Please check your credentials and try again."
+                    });
                 } else {
                     setErrors({ email: "An unexpected error occurred. Please try again later." });
                 }
             }
         }
     };
+
     return (
         <div className="login-container" onClick={onClose}>
             <div className="login-popup" onClick={(e) => e.stopPropagation()}>
@@ -117,14 +117,13 @@ const Login = ({ onClose, onSignupClick, onLoginSuccess }) => {
                         />
                         {errors.email && <div className="error-message">{errors.email}</div>}
                         {errors.password && <div className="error-message">{errors.password}</div>}
-                        <p className='divq'>
-                            <div className='fp' onClick={handleForgotPassword}>
-                                Forgot Password?
-                            </div>
-                        </p>
+                        <div className="divq">
+                            <span className="fp" onClick={handleForgotPassword}>Forgot Password?</span>
+                        </div>
                         <button type="submit" className="submit-button">Login</button>
                         <p className="signup-message">
-                            Don't have an account? <span onClick={handleSignupClick} className="signup-link">Sign up</span>
+                            Don't have an account?{" "}
+                            <span onClick={handleSignupClick} className="signup-link">Sign up</span>
                         </p>
                     </form>
                 </div>

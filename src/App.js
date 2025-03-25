@@ -18,7 +18,6 @@ import Managevendors from './components/Managevendors';
 import PaymentSuccess from './components/Paymentsuccess';
 import Products from './components/Products';
 import SearchResults from './components/Searchresult';
-// import User from './components/Userdash';
 import Payment from './components/Payment';
 import Order from './components/Order';
 import ProductManage from './components/ProductManage';
@@ -31,11 +30,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
 
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
-  // Routes where Navbar should be hidden
   const hideNavbarRoutes = [
     '/manageproduct',
     '/manageaddress',
@@ -45,9 +39,9 @@ const App = () => {
     '/payment',
     '/admin',
     '/userdash',
+    '/cart'
   ];
 
-  // Determine if Navbar should be hidden
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
@@ -58,7 +52,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/fruitveg" element={<Fruitsveg cart={cart} setCart={setCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} isLoggedIn={isLoggedIn} />} />

@@ -32,7 +32,7 @@ th {
   font-weight: bold;
 }
 
-button {
+.vendors-button {
   padding: 5px 10px;
   color: white;
   background-color: #ff4d4d;
@@ -41,13 +41,10 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.vendor-button:hover {
   background-color: #ff1a1a;
 }
-.manage-vendors {
-  position: relative;
-  padding: 20px;
-}
+
 
 .back-link {
   position: absolute;
